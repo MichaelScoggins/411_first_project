@@ -11,6 +11,7 @@ class App extends Component {
   // toggle = () => {this.setState({isOn: !this.state.isOn})}
 
   inputUpdate = event => {this.setState({ input: event.target.value })}
+  itemDelete = event => {this.setState({ input: [this.state.input !== event.target.value] })}
 
   formSubmit = event => {
     event.preventDefault()
