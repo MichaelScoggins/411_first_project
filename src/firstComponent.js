@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function FirstComponent(props) {
-  console.log('This is FirstComponent Props******', props.items)
-  return (
-    <>
-      <h1>This is Our Listing Component</h1>
-      <ul>
-        {props.items.map((item, index) => {
-        return <li key={index}>{props.items[index]}</li>
-      })}
-      </ul>
-    </>
-  )
+class FirstComponent extends Component {
+  // console.log('This is FirstComponent Props******', this.props.items)
+  render() {
+    return (
+      <>
+        <h1>This is Our Listing Component</h1>
+        <ul>
+          {this.props.items.map((item, index) => {
+          return <li key={index}>{this.props.items[index]}</li>
+        })}
+        <button onClick={this.props.delItem.bind(this, this.props.id)}>X</button>
+        </ul>
+      </>
+    )
+  }
 }
 
 export default FirstComponent

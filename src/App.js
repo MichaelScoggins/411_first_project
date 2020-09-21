@@ -4,6 +4,7 @@ import FirstComponent from './FirstComponent'
 
 class App extends Component {
   state = {
+      id: '1',
       input: '',
       items: []
     }
@@ -11,13 +12,15 @@ class App extends Component {
   // toggle = () => {this.setState({isOn: !this.state.isOn})}
 
   inputUpdate = event => {this.setState({ input: event.target.value })}
-  itemDelete = event => {this.setState({ input: [this.state.input !== event.target.value] })}
+  delItem = id => {
+    this.setState({ items: [...this.state.items.filter(item => item.id !== id)] }) 
+  }
 
   formSubmit = event => {
     event.preventDefault()
     console.log('*****THIS IS STATE*****', this.state.items)
     this.setState({
-      items : [...this.state.items, this.state.input],
+      items : [...this.state.items, this.state.input, this.state.id++],
       input: ''
     })
   }  
@@ -31,7 +34,7 @@ class App extends Component {
           <input value={this.state.input} onChange={this.inputUpdate}/>
           <button >Submit</button>
         </form>
-        <FirstComponent items={this.state.items} />
+        <FirstComponent items={this.state.items} delItem={this.delItem} id={this.state.id}/>
       </div>
     );
   }
