@@ -1,6 +1,6 @@
 import React, { Component }  from 'react';
 import './App.css';
-import FirstComponent from './firstComponent'
+import FirstComponent from './FirstComponent'
 
 class App extends Component {
   state = {
