@@ -13,12 +13,11 @@ class App extends Component {
 
 
   delItem = (key) => {
-    this.setState({ items: [...this.state.items.filter(item => item !== key)] }) 
+    this.setState({ items: [...this.state.items.filter((item, index) => index !== key)] }) 
   }
 
   formSubmit = event => {
     event.preventDefault()
-    console.log('*****THIS IS STATE*****', this.state.items)
     this.setState({
       items: [...this.state.items, this.state.input],
       input: ''
@@ -26,7 +25,6 @@ class App extends Component {
   }  
 
   render() {
-    console.log('*****THIS IS STATE*****', this.state.items)
     return (
       <div className="App">
         <h1>Hello Freak Bitches</h1>
