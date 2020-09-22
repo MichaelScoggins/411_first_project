@@ -8,9 +8,10 @@ class App extends Component {
       items: []
     }
   
-  // toggle = () => {this.setState({isOn: !this.state.isOn})}
 
-  inputUpdate = event => {this.setState({ input: event.target.value })}
+  onChange = event => {this.setState({ input: event.target.value })}
+
+
   delItem = (key) => {
     this.setState({ items: [...this.state.items.filter(item => item !== key)] }) 
   }
@@ -30,7 +31,7 @@ class App extends Component {
       <div className="App">
         <h1>Hello Freak Bitches</h1>
         <form onSubmit={this.formSubmit}>
-          <input value={this.state.input} onChange={this.inputUpdate}/>
+          <input value={this.state.input} onChange={this.onChange}/>
           <button >Submit</button>
         </form>
         <FirstComponent items={this.state.items} delItem={this.delItem}/>
