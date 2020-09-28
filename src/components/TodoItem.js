@@ -6,7 +6,7 @@ export class TodoItem extends React.Component {
     return (
       <p>
         { title }
-        <button onClick={() => this.props.removeItem(id)}>X</button>
+        <button onClick={() => this.props.removeItem(id)}>X</button>        
       </p>
     )
   }

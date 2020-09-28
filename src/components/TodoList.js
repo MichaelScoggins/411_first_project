@@ -1,14 +1,14 @@
-import React from 'react';
-import ModifyItem from './ModifyItem';
+import React from "react";
+import ModifyItem from "./ModifyItem";
 
-class TodoList extends React.Component {    
+class TodoList extends React.Component {
   render() {
     return (
-      <div>
+      <ul>
         <ModifyItem />
-      </div>
-    )
+      </ul>
+    );
   }
 }
 
-export default TodoList
+export default TodoList;
