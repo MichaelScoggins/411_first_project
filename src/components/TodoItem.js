@@ -1,15 +1,22 @@
-import React from 'react'
+import React from "react";
 
 export class TodoItem extends React.Component {
   render() {
-    const { title, id } = this.props.item
     return (
       <p>
-        { title }
-        <button onClick={() => this.props.removeItem(id)}>X</button>        
+        {this.props.item}
+        <button onClick={() => this.props.removeItem(this.props.index)}>
+          X
+        </button>
       </p>
-    )
+    );
   }
 }
 
-export default TodoItem
+export default TodoItem;
+
+// removeItem = (index) => {
+//   this.setState({
+//     items: [...this.state.items.filter((item, i) => item[i] !== index)],
+//   });
+// };
