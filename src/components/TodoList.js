@@ -6,16 +6,7 @@ export default function TodoList(props) {
   return (
     <ul>
       {props.items.map((x, i) => {
-        return (
-          <TodoItem
-            item={x.title}
-            removeItem={props.removeItem}
-            index={i}
-            changeStatus={props.changeStatus}
-            status={props.items.status}
-            state={props.state}
-          />
-        )
+        return <TodoItem item={x} removeItem={props.removeItem} index={i} />
       })}
     </ul>
   )

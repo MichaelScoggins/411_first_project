@@ -1,28 +1,11 @@
 import React, { Component } from 'react'
 import './App.css'
 import Header from './components/layout/Header'
-import TodoItem from './components/TodoItem'
 import TodoList from './components/TodoList'
 
 class App extends Component {
   state = {
-    items: [
-      {
-        title: '1',
-        id: '1',
-        status: 'red',
-      },
-      {
-        title: '2',
-        id: '2',
-        status: 'red',
-      },
-      {
-        title: '3',
-        id: '3',
-        status: 'red',
-      },
-    ],
+    items: [],
     input: '',
   }
 
@@ -38,31 +21,9 @@ class App extends Component {
     })
   }
 
-  // removeItem = (index) => {
-  //   this.setState({
-  //     items: [...this.state.items.filter((x, i) => i !== index)],
-  //   })
-  // }
-
-  removeItem = (index) => {
-    const todos = this.state.items
-    todos.splice(index, 1)
+  removeItem = (id) => {
     this.setState({
-      items: [...todos],
-    })
-  }
-
-  changeStatus = () => {
-    let status = this.state.status
-    this.setState({
-      status:
-        status === 'red'
-          ? 'yellow'
-          : status === 'yellow'
-          ? 'green'
-          : status === 'green'
-          ? 'red'
-          : 'red',
+      items: [...this.state.items.filter((x, i) => i !== id)],
     })
   }
 
@@ -70,7 +31,25 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <TodoItem />
+        <form style={{ display: 'flex' }} onSubmit={this.onSubmit}>
+          <input
+            type="text"
+            name="title"
+            style={{ flex: '10', padding: '5px' }}
+            placeholder="Add Todo ..."
+            value={this.state.input}
+            onChange={this.onChange}
+          />
+          <input
+            type="submit"
+            value="Submit"
+            className="btn"
+            style={{ flex: '1' }}
+          />
+        </form>
+        <div>
+          <TodoList items={this.state.items} removeItem={this.removeItem} />
+        </div>
       </div>
     )
   }
