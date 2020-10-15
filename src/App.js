@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 import './App.css'
 import Header from './components/layout/Header'
-import TodoList from './components/TodoList'
 
 class App extends Component {
   state = {
-    items: [],
+    todos: [
+      {
+        id: 1,
+        title: 'click me',
+        status: 'red',
+      },
+    ],
     input: '',
+    counter: 2,
   }
 
   onChange = (event) => {
@@ -16,15 +22,37 @@ class App extends Component {
   onSubmit = (event) => {
     event.preventDefault()
     this.setState({
-      items: [...this.state.items, this.state.input],
+      todos: [
+        ...this.state.todos,
+        {
+          title: this.state.input,
+          id: this.state.counter,
+          status: 'red',
+        },
+      ],
       input: '',
+      counter: this.state.counter + 1,
     })
   }
 
   removeItem = (id) => {
     this.setState({
-      items: [...this.state.items.filter((x, i) => i !== id)],
+      todos: [...this.state.todos.filter((x, i) => i !== id)],
     })
+  }
+
+  handleClick = (todo) => {
+    if (todo.status === 'red') {
+      console.log('clicked!')
+      todo.status = 'yellow'
+    } else if (todo.status === 'yellow') {
+      todo.status = 'green'
+    } else if (todo.status === 'green') {
+      todo.status = 'red'
+    }
+    console.log(todo.status)
+    // todo.status =
+    this.setState({ todos: this.state.todos })
   }
 
   render() {
@@ -47,9 +75,26 @@ class App extends Component {
             style={{ flex: '1' }}
           />
         </form>
-        <div>
-          <TodoList items={this.state.items} removeItem={this.removeItem} />
-        </div>
+
+        <ul>
+          {this.state.todos.map((todo, idx) => {
+            return (
+              <li key={todo.id}>
+                <span
+                  onClick={(e) => this.handleClick(todo)}
+                  style={{ color: todo.status }}
+                  value={todo.id}
+                  id={idx}
+                >
+                  {todo.title}
+                </span>
+                <span>
+                  <button onClick={() => this.removeItem(idx)}>X</button>
+                </span>
+              </li>
+            )
+          })}
+        </ul>
       </div>
     )
   }

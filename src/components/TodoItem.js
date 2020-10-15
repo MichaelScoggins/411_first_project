@@ -2,12 +2,12 @@ import React from 'react'
 
 export class TodoItem extends React.Component {
   state = {
-    status: 'red',
+    status: '',
   }
 
-  changeStatus = () => {
+  changeStatus = (e) => {
     let status = this.state.status
-    this.setState({
+    this.setState((e) => {
       status:
         status === 'red'
           ? 'yellow'
@@ -24,7 +24,7 @@ export class TodoItem extends React.Component {
       <li key={this.props.index}>
         <span
           style={{ color: this.state.status }}
-          onClick={() => this.changeStatus()}
+          onClick={this.changeStatus(this.props.index)}
         >
           {this.props.item}
         </span>
